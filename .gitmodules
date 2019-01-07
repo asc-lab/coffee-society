@@ -1,0 +1,15 @@
+[submodule "coffee-society-accounting"]
+	path = coffee-society-accounting
+	url = https://github.com/asc-lab/coffee-society-accounting.git
+[submodule "coffee-society-accrual"]
+	path = coffee-society-accrual
+	url = https://github.com/asc-lab/coffee-society-accrual.git
+[submodule "coffee-society-product"]
+	path = coffee-society-product
+	url = https://github.com/asc-lab/coffee-society-product.git
+[submodule "coffee-society-member"]
+	path = coffee-society-member
+	url = https://github.com/asc-lab/coffee-society-member.git
+[submodule "coffee-society-web"]
+	path = coffee-society-web
+	url = https://github.com/asc-lab/coffee-society-web.git
