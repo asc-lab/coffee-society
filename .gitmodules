@@ -13,3 +13,6 @@
 [submodule "coffee-society-web"]
 	path = coffee-society-web
 	url = https://github.com/asc-lab/coffee-society-web.git
+[submodule "coffee-society-product-catalog"]
+	path = coffee-society-product-catalog
+	url = https://github.com/asc-lab/coffee-society-product-catalog.git
