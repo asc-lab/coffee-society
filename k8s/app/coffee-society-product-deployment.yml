@@ -1,0 +1,52 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: coffee-society-product
+  labels:
+    app: coffee-society-product
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coffee-society-product
+  template:
+    metadata:
+      labels:
+        app: coffee-society-product
+    spec:
+      containers:
+      - name: coffee-society-product
+        image: csms/coffee-society-product:latest
+        env:
+        - name: SERVICE_PORT
+          value: "80"
+        - name: MONGO_HOST
+          value: "mongo"
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_DB
+          value: "admin"
+        - name: ELASTICSEARCH_HOST
+          value: "elasticsearch"
+        - name: ELASTICSEARCH_PORT
+          value: "9300"
+        - name: ELASTICSEARCH_CLUSTER
+          value: "docker-cluster"
+        - name: AXON_HOST
+          value: "axon"
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 80
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+          periodSeconds: 1
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          periodSeconds: 5
