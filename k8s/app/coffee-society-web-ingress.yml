@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: coffee-society-web-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        backend:
+          serviceName: coffee-society-web
+          servicePort: 80
+      - path: /api/users
+        backend:
+          serviceName: coffee-society-member
+          servicePort: 80
+      - path: /oauth
+        backend:
+          serviceName: coffee-society-member
+          servicePort: 80
