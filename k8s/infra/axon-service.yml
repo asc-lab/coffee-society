@@ -1,0 +1,19 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: axon
+  labels:
+    app: axon
+spec:
+  type: ClusterIP
+  selector:
+    app: axon
+  ports:
+  - name: gui
+    protocol: TCP
+    port: 8024
+    targetPort: 8024
+  - name: grpc
+    protocol: TCP
+    port: 8124
+    targetPort: 8124
