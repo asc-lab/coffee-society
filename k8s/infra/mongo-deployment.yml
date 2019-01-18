@@ -1,0 +1,41 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: mongo
+  labels:
+    app: mongo
+spec:
+  serviceName: mongo
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+      - name: mongo
+        image: mongo
+        env:
+        - name: "MONGO_INITDB_ROOT_USERNAME"
+          value: "admin"
+        - name: "MONGO_INITDB_ROOT_PASSWORD"
+          value: "admin"
+        - name: "MONGO_INITDB_DATABASE"
+          value: "admin"
+        ports:
+        - containerPort: 27017
+        readinessProbe:
+          tcpSocket:
+            port: 27017
+          initialDelaySeconds: 3
+          timeoutSeconds: 1
+          periodSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 27017
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          periodSeconds: 5
