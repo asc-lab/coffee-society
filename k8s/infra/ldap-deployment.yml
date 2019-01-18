@@ -1,0 +1,34 @@
+kind: StatefulSet
+apiVersion: apps/v1
+metadata:
+  name: ldap
+  labels:
+    app: ldap
+spec:
+  serviceName: ldap
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ldap
+  template:
+    metadata:
+      labels:
+        app: ldap
+    spec:
+      containers:
+      - name: ldap
+        image: rroemhild/test-openldap
+        ports:
+        - containerPort: 389
+        readinessProbe:
+          tcpSocket:
+            port: 389
+          initialDelaySeconds: 3
+          timeoutSeconds: 1
+          periodSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 389
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          periodSeconds: 5
