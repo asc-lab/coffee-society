@@ -1,0 +1,46 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: coffee-society-product-catalog
+  labels:
+    app: coffee-society-product-catalog
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: coffee-society-product-catalog
+  template:
+    metadata:
+      labels:
+        app: coffee-society-product-catalog
+    spec:
+      containers:
+      - name: coffee-society-product-catalog
+        image: csms/coffee-society-product-catalog:latest
+        env:
+        - name: SERVICE_PORT
+          value: "80"
+        - name: MONGO_HOST
+          value: "mongo"
+        - name: MONGO_PORT
+          value: "27017"
+        - name: MONGO_DB
+          value: "admin"
+        - name: AXON_HOST
+          value: "axon"
+        ports:
+        - containerPort: 80
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 80
+          initialDelaySeconds: 1
+          timeoutSeconds: 1
+          periodSeconds: 1
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 80
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          periodSeconds: 5
