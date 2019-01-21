@@ -1,0 +1,14 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: coffee-society-product-catalog-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /api/product-catalog
+        backend:
+          serviceName: coffee-society-product-catalog
+          servicePort: 80
