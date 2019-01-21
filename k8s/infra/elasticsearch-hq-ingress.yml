@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: elasticsearch-hq-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: elastic.coffee.software.altkom.pl
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: elasticsearch-hq
+          servicePort: 80

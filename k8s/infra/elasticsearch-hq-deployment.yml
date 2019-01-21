@@ -1,0 +1,33 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: elasticsearch-hq
+  labels:
+    app: elasticsearch-hq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch-hq
+  template:
+    metadata:
+      labels:
+        app: elasticsearch-hq
+    spec:
+      containers:
+      - name: elastic-hq
+        image: elastichq/elasticsearch-hq
+        ports:
+        - containerPort: 5000
+        readinessProbe:
+          tcpSocket:
+            port: 5000
+          initialDelaySeconds: 3
+          timeoutSeconds: 1
+          periodSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 5000
+          initialDelaySeconds: 30
+          timeoutSeconds: 1
+          periodSeconds: 5
