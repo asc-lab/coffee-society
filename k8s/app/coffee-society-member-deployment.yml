@@ -38,6 +38,8 @@ spec:
           value: "{noop}secret"
         - name: OAUTH_SIGNING_KEY
           value: "signingKey"
+        - name: MOCK_SECURITY
+          value: "true"
         ports:
         - containerPort: 80
         readinessProbe:
