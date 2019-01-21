@@ -32,6 +32,12 @@ spec:
           value: "ldap://ldap:389"
         - name: LDAP_DOMAIN
           value: "ou=people,dc=planetexpress,dc=com"
+        - name: OAUTH_CLIENT
+          value: "client"
+        - name: OAUTH_SECRET
+          value: "{noop}secret"
+        - name: OAUTH_SIGNING_KEY
+          value: "signingKey"
         ports:
         - containerPort: 80
         readinessProbe:
