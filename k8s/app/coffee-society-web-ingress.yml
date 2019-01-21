@@ -12,11 +12,3 @@ spec:
         backend:
           serviceName: coffee-society-web
           servicePort: 80
-      - path: /api/users
-        backend:
-          serviceName: coffee-society-member
-          servicePort: 80
-      - path: /oauth
-        backend:
-          serviceName: coffee-society-member
-          servicePort: 80
